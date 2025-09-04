@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { PDFDocument } from "pdf-lib"; // Import thư viện pdf-lib
 import "./App.css";
 import { Configuration, OpenAIApi } from "openai";
 
@@ -6,6 +7,35 @@ function App() {
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [pdfContents, setPdfContents] = useState([]); // Lưu nội dung các file PDF
+
+  // Hàm đọc nội dung từ file PDF
+  const loadPdfFiles = async () => {
+    const pdfFiles = ["huong_dan_01.pdf", "huong_dan_02.pdf", "huong_dan_03.pdf", "huong_dan_04.pdf", "huong_dan_05.pdf"]; // Tên các file PDF
+    const contents = [];
+
+    for (const fileName of pdfFiles) {
+      const response = await fetch(`/pdf/${fileName}`); // Đường dẫn tới file PDF trong thư mục public
+      const arrayBuffer = await response.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer); // Load file PDF
+      const pages = pdfDoc.getPages();
+      let text = "";
+
+      // Lấy nội dung từ tất cả các trang
+      for (const page of pages) {
+        text += page.getTextContent ? await page.getTextContent() : "";
+      }
+
+      contents.push(text);
+    }
+
+    setPdfContents(contents);
+    alert("PDFs loaded successfully!");
+  };
+
+  useEffect(() => {
+    loadPdfFiles(); // Tự động tải các file PDF khi ứng dụng khởi chạy
+  }, []);
 
   const chat = async (e, message) => {
     e.preventDefault();
@@ -22,12 +52,13 @@ function App() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`, // lưu key trong .env
+          Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
           model: "gpt-4.1",
           messages: [
             { role: "system", content: "You are EbereGPT..." },
+            { role: "system", content: `Here are the contents of the PDFs: ${pdfContents.join("\n")}` },
             ...msgs,
           ],
         }),
@@ -42,9 +73,10 @@ function App() {
       setIsTyping(false);
     }
   };
+
   return (
     <main>
-      <h1>Chat GPT</h1>
+      <h1>QUY TRÌNH NGHIÊN CỨU KHOA HỌC VÀ SÁNG KIẾN CẢI TIẾN TẠI BỆNH VIỆN RĂNG HÀM MẶT TPHCM</h1>
 
       <section>
         {chats && chats.length
