@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import ReactMarkdown from "react-markdown";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -90,7 +91,7 @@ function App() {
               <span className="chat-role">
                 {chat.role === "user" ? "Bạn" : "GPT"}:
               </span>
-              <span className="chat-content">{chat.content}</span>
+              <ReactMarkdown>{chat.content}</ReactMarkdown>
             </div>
           ))
         ) : (
