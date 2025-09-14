@@ -135,3 +135,67 @@ body {
 .send-btn:hover {
   background: #1d4ed8;
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    background: #f8fafc;
+  }
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .chat-title {
+    font-size: 1.2rem;
+    margin: 12px 0 4px;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .chat-history {
+    flex: 1; /* chiếm toàn bộ khoảng trống còn lại */
+    padding: 12px;
+    margin: 0;
+    overflow-y: auto;
+    background: #f9fafb;
+  }
+
+  .chat-bubble {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    max-width: 85%;
+  }
+
+  .chat-form {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-top: 1px solid #e2e8f0;
+    background: #fff;
+  }
+
+  .chat-input {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+
+  .send-btn {
+    padding: 0 14px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+}

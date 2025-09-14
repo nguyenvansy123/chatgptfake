@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import ReactMarkdown from "react-markdown";
 
@@ -21,7 +21,33 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng ki
   ]);
   const [isTyping, setIsTyping] = useState(false);
 
-  // Hàm chat (dùng Responses API + File Search)
+  const chatHistoryRef = useRef(null);
+
+  useEffect(() => {
+    if (chatHistoryRef.current) {
+      chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
+    }
+  }, [chats, isTyping]);
+
+  // Hàm typing từng ký tự
+  const typeReply = (text, msgs) => {
+    let index = 0;
+    const newMsg = { role: "assistant", content: "" };
+    msgs.push(newMsg);
+    setChats([...msgs]);
+
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        newMsg.content += text[index];
+        setChats([...msgs]);
+        index++;
+      } else {
+        clearInterval(interval);
+        setIsTyping(false);
+      }
+    }, 30); // tốc độ hiển thị (ms/char)
+  };
+
   const chat = async (e, message) => {
     e.preventDefault();
     if (!message) return;
@@ -47,22 +73,22 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng ki
               content:
                 "Bạn là chuyên viên quản lý nghiên cứu khoa học BV Răng Hàm Mặt TPHCM. Trả lời bằng tiếng Việt.",
             },
-             {
+            {
               role: "system",
               content:
-                "nếu người dùng những câu không liên quan thì trả lời bạn có câu hỏi gì về quy trình nghiên cứu khoa học và sáng kiến cải tiến của BV Răng Hàm Mặt TPHCM.",
+                "Nếu người dùng hỏi câu không liên quan thì trả lời: Bạn có câu hỏi gì về quy trình nghiên cứu khoa học và sáng kiến cải tiến của BV Răng Hàm Mặt TPHCM?",
             },
             {
               role: "system",
               content:
-                "Chỉ trả lời dựa trên tài liệu nội bộ của BV Răng Hàm Mặt TPHCM, nếu không có trong tài liệu thì trả lời rằng tôi không thể trả lời câu hỏi này.",
+                "Chỉ trả lời dựa trên tài liệu nội bộ của BV Răng Hàm Mặt TPHCM. Nếu không có trong tài liệu thì trả lời rằng tôi không thể trả lời câu hỏi này.",
             },
             { role: "user", content: message },
           ],
           tools: [
             {
               type: "file_search",
-              vector_store_ids: ["vs_68c2368283788191b4eeabe7c26b40d3"], // thay bằng ID thật
+              vector_store_ids: ["vs_68c2368283788191b4eeabe7c26b40d3"],
             },
           ],
         }),
@@ -80,15 +106,10 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng ki
         reply = assistantMessage.content[0].text;
       }
 
-      msgs.push({
-        role: "assistant",
-        content: reply,
-      });
-
-      setChats(msgs);
+      // Gọi typing effect thay vì push thẳng
+      typeReply(reply, msgs);
     } catch (err) {
       console.error(err);
-    } finally {
       setIsTyping(false);
     }
   };
@@ -101,7 +122,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng ki
         <span className="subtitle">BỆNH VIỆN RĂNG HÀM MẶT TPHCM</span>
       </h1>
 
-      <section className="chat-history">
+      <section className="chat-history" ref={chatHistoryRef}>
         {chats.map((chat, index) => (
           <div
             key={index}
