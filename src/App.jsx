@@ -4,9 +4,22 @@ import ReactMarkdown from "react-markdown";
 
 function App() {
   const [message, setMessage] = useState("");
-  const [chats, setChats] = useState([]);
-  const [isTyping, setIsTyping] = useState(false);
+  const [chats, setChats] = useState([
+    {
+      role: "assistant",
+      content: `
+Xin chào 👋, tôi là **trợ lý nghiên cứu khoa học** của BV Răng Hàm Mặt TPHCM.  
+Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng kiến cải tiến.
 
+**Một số gợi ý để bắt đầu:**
+- "Quy trình nộp đề tài nghiên cứu như thế nào?"
+- "Cần biểu mẫu gì khi đăng ký sáng kiến?"
+- "Các bước xét duyệt đề tài?"
+- "Ai là người phụ trách hội đồng khoa học?"
+`,
+    },
+  ]);
+  const [isTyping, setIsTyping] = useState(false);
 
   // Hàm chat (dùng Responses API + File Search)
   const chat = async (e, message) => {
@@ -18,6 +31,7 @@ function App() {
     let msgs = [...chats, { role: "user", content: message }];
     setChats(msgs);
     setMessage("");
+
     try {
       const res = await fetch("https://api.openai.com/v1/responses", {
         method: "POST",
@@ -26,30 +40,37 @@ function App() {
           Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "gpt-5", // hoặc gpt-4o-mini
+          model: "gpt-4o-mini",
           input: [
             {
               role: "system",
               content:
                 "Bạn là chuyên viên quản lý nghiên cứu khoa học BV Răng Hàm Mặt TPHCM. Trả lời bằng tiếng Việt.",
-            }, {
+            },
+             {
               role: "system",
               content:
-                "chỉ trả lời dựa trên tài liệu nội bộ của BV Răng Hàm Mặt TPHCM, nếu không có trong tài liệu thì trả lời rằng tôi không thể trả lời câu hỏi này.",
+                "nếu người dùng những câu không liên quan thì trả lời bạn có câu hỏi gì về quy trình nghiên cứu khoa học và sáng kiến cải tiến của BV Răng Hàm Mặt TPHCM.",
+            },
+            {
+              role: "system",
+              content:
+                "Chỉ trả lời dựa trên tài liệu nội bộ của BV Răng Hàm Mặt TPHCM, nếu không có trong tài liệu thì trả lời rằng tôi không thể trả lời câu hỏi này.",
             },
             { role: "user", content: message },
           ],
-          tools: [{
-            type: "file_search",
-            vector_store_ids: ["vs_68c2368283788191b4eeabe7c26b40d3"]
-          }]
+          tools: [
+            {
+              type: "file_search",
+              vector_store_ids: ["vs_68c2368283788191b4eeabe7c26b40d3"], // thay bằng ID thật
+            },
+          ],
         }),
       });
 
       const data = await res.json();
       console.log("API response:", data);
 
-      // Lấy item có type = "message" và role = "assistant"
       const assistantMessage = data.output.find(
         (item) => item.type === "message" && item.role === "assistant"
       );
@@ -81,22 +102,21 @@ function App() {
       </h1>
 
       <section className="chat-history">
-        {chats.length ? (
-          chats.map((chat, index) => (
-            <div
-              key={index}
-              className={`chat-bubble ${chat.role === "user" ? "user" : "assistant"
-                }`}
-            >
-              <span className="chat-role">
-                {chat.role === "user" ? "Bạn" : "GPT"}:
-              </span>
-              <ReactMarkdown>{chat.content}</ReactMarkdown>
-            </div>
-          ))
-        ) : (
-          <div className="empty-chat">Hãy nhập câu hỏi để bắt đầu!</div>
-        )}
+        {chats.map((chat, index) => (
+          <div
+            key={index}
+            className={`chat-bubble ${
+              chat.role === "user" ? "user" : "assistant"
+            }`}
+          >
+            <span className="chat-role">
+              {chat.role === "user" ? "Bạn" : "NCKH"}:
+            </span>
+            <ReactMarkdown className="chat-content">
+              {chat.content}
+            </ReactMarkdown>
+          </div>
+        ))}
       </section>
 
       {isTyping && (
@@ -125,4 +145,3 @@ function App() {
 }
 
 export default App;
-
