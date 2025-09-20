@@ -14,8 +14,6 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
 **Một số gợi ý để bắt đầu:**
 - "Quy trình nộp đề tài nghiên cứu như thế nào?"
 - "Cần biểu mẫu gì khi đăng ký sáng kiến?"
-- "Các bước xét duyệt đề tài?"
-- "Ai là người phụ trách hội đồng khoa học?"
 `,
     },
   ]);
