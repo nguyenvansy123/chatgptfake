@@ -17,7 +17,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
 `,
     },
   ]);
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
 
   const chatHistoryRef = useRef(null);
 

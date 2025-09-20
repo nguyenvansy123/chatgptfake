@@ -182,7 +182,7 @@ section.chat-history {
   }
 
   .chat-history {
-    flex: 1;
+    /* flex: 1; */
     /* chiếm toàn bộ khoảng trống còn lại */
     padding: 12px;
     margin: 0;
@@ -191,11 +191,11 @@ section.chat-history {
   }
 
   .chat-bubble {
-    padding: 10px 14px;
+    /* padding: 10px 14px; */
     font-size: 0.95rem;
     border-radius: 12px;
-    margin-bottom: 10px;
-    max-width: 85%;
+    margin: 10px;
+    max-width: 100%;
   }
 
   .chat-form {
@@ -217,5 +217,10 @@ section.chat-history {
     padding: 0 14px;
     font-size: 0.95rem;
     border-radius: 8px;
+  }
+
+  .typing-indicator {
+    margin-top: 0px;
+    margin-left: 15px;
   }
 }
