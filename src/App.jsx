@@ -8,8 +8,8 @@ function App() {
     {
       role: "assistant",
       content: `
-Xin chào 👋, tôi là **trợ lý nghiên cứu khoa học** của BV Răng Hàm Mặt TPHCM.  
-Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng kiến cải tiến.
+Xin chào 👋, tôi là **trợ lý phát triển khoa học và đổi mới sáng tạo** của BV Răng Hàm Mặt TPHCM.  
+Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiến cải tiến và xét duyệt y đức.
 
 **Một số gợi ý để bắt đầu:**
 - "Quy trình nộp đề tài nghiên cứu như thế nào?"
@@ -76,7 +76,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng ki
             {
               role: "system",
               content:
-                "Nếu người dùng hỏi câu không liên quan thì trả lời: Bạn có câu hỏi gì về quy trình nghiên cứu khoa học và sáng kiến cải tiến của BV Răng Hàm Mặt TPHCM?",
+                "Nếu người dùng hỏi câu không liên quan thì trả lời: Bạn có câu hỏi gì về quy trình nghiên cứu khoa học, sáng kiến cải tiến và xét duyệt y đức của BV Răng Hàm Mặt TPHCM?",
             },
             {
               role: "system",
@@ -126,12 +126,11 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học và sáng ki
         {chats.map((chat, index) => (
           <div
             key={index}
-            className={`chat-bubble ${
-              chat.role === "user" ? "user" : "assistant"
-            }`}
+            className={`chat-bubble ${chat.role === "user" ? "user" : "assistant"
+              }`}
           >
             <span className="chat-role">
-              {chat.role === "user" ? "Bạn" : "NCKH"}:
+              {chat.role === "user" ? "Bạn" : "P.KHTH"}:
             </span>
             <ReactMarkdown className="chat-content">
               {chat.content}
