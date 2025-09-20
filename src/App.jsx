@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import ReactMarkdown from "react-markdown";
+import "github-markdown-css/github-markdown.css";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -130,7 +131,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
             <span className="chat-role">
               {chat.role === "user" ? "Bạn" : "P.KHTH"}:
             </span>
-            <ReactMarkdown className="chat-content">
+            <ReactMarkdown className="markdown-body chat-content">
               {chat.content}
             </ReactMarkdown>
           </div>

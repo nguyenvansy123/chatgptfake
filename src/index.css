@@ -71,6 +71,15 @@ body {
   word-break: break-word;
 }
 
+.user .chat-content {
+  background-color: #e0f2fe;
+  color: #2563eb;
+}
+
+.assistant .chat-content {
+   background-color: #f3f4f6;
+}
+
 .empty-chat {
   text-align: center;
   color: #94a3b8;
