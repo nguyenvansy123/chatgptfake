@@ -14,7 +14,8 @@ body {
   box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
   padding: 32px 24px 24px 24px;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-title {
@@ -30,10 +31,10 @@ body {
   font-weight: 400;
 }
 
-section.chat-history {
+.chat-history {
+  flex: 1;
   padding: 20px 0;
-  height: 72vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .chat-bubble {
@@ -81,7 +82,7 @@ section.chat-history {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: -15px;
+  margin: 8px 0;
   padding-left: 8px;
 }
 
@@ -104,26 +105,17 @@ section.chat-history {
 }
 
 @keyframes blink {
-
-  0%,
-  80%,
-  100% {
-    opacity: 0.2;
-  }
-
-  40% {
-    opacity: 1;
-  }
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
 }
 
 .chat-form {
   display: flex;
   gap: 8px;
   margin-top: 12px;
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
+  border-top: 1px solid #e2e8f0;
+  padding: 12px;
+  background: #fff;
 }
 
 .chat-input {
@@ -146,23 +138,26 @@ section.chat-history {
   border: none;
   border-radius: 8px;
   padding: 0 18px;
+  height: 40px;
+  min-width: 60px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .send-btn:hover {
   background: #1d4ed8;
 }
 
+/* 🌐 Responsive cho mobile */
 @media screen and (max-width: 768px) {
   body {
     background: #f8fafc;
   }
 
   .chat-container {
-    display: flex;
-    flex-direction: column;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -182,8 +177,7 @@ section.chat-history {
   }
 
   .chat-history {
-    /* flex: 1; */
-    /* chiếm toàn bộ khoảng trống còn lại */
+    flex: 1;
     padding: 12px;
     margin: 0;
     overflow-y: auto;
@@ -191,7 +185,6 @@ section.chat-history {
   }
 
   .chat-bubble {
-    /* padding: 10px 14px; */
     font-size: 0.95rem;
     border-radius: 12px;
     margin: 10px;
@@ -199,28 +192,27 @@ section.chat-history {
   }
 
   .chat-form {
-    display: flex;
+    padding: 8px;
     gap: 6px;
-    padding: 10px;
-    border-top: 1px solid #e2e8f0;
-    background: #fff;
   }
 
   .chat-input {
-    flex: 1;
     padding: 10px 12px;
     font-size: 0.95rem;
-    border-radius: 8px;
   }
 
+  /* 🔹 Trên mobile nút gửi sẽ thành icon tròn */
   .send-btn {
-    padding: 0 14px;
-    font-size: 0.95rem;
-    border-radius: 8px;
+    width: 42px;
+    height: 42px;
+    min-width: unset;
+    /* border-radius: 50%; */
+    padding: 0;
+    font-size: 1.2rem;
   }
 
-  .typing-indicator {
-    margin-top: -5px;
-    margin-left: 15px;
-  }
+  /* .send-btn::after {
+    content: "✈️"; 
+    font-size: 1.2rem;
+  } */
 }
