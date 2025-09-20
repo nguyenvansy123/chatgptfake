@@ -66,7 +66,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
           Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini",
+          model: "gpt-5",
           input: [
             {
               role: "system",
