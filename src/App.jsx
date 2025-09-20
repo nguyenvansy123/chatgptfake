@@ -155,8 +155,9 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
           placeholder="Nhập câu hỏi và nhấn Enter..."
           onChange={(e) => setMessage(e.target.value)}
           autoFocus
+          disabled={isTyping}
         />
-        <button type="submit" className="send-btn">
+        <button type="submit" className="send-btn" disabled={isTyping}>
           Gửi
         </button>
       </form>

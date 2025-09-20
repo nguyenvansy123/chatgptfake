@@ -7,11 +7,14 @@ body {
 
 .chat-container {
   max-width: 1000px;
+  height: 90vh;
   margin: 40px auto;
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
   padding: 32px 24px 24px 24px;
+  position: relative;
+  overflow: hidden;
 }
 
 .chat-title {
@@ -27,21 +30,20 @@ body {
   font-weight: 400;
 }
 
-.chat-history {
-  min-height: 220px;
-  margin-bottom: 24px;
-  padding: 8px 0;
-  overflow-y: auto;
+section.chat-history {
+  padding: 20px 0;
+  height: 72vh;
+  overflow-y: scroll;
 }
 
 .chat-bubble {
   display: flex;
   flex-direction: column;
-  max-width: 80%;
+  max-width: 100%;
   margin-bottom: 12px;
   padding: 12px 16px;
   border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -79,7 +81,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 12px;
+  margin-top: -15px;
   padding-left: 8px;
 }
 
@@ -93,18 +95,35 @@ body {
   animation: blink 1.2s infinite both;
 }
 
-.dot:nth-child(2) { animation-delay: 0.2s; }
-.dot:nth-child(3) { animation-delay: 0.4s; }
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes blink {
-  0%, 80%, 100% { opacity: 0.2; }
-  40% { opacity: 1; }
+
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+  }
+
+  40% {
+    opacity: 1;
+  }
 }
 
 .chat-form {
   display: flex;
   gap: 8px;
   margin-top: 12px;
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
 }
 
 .chat-input {
@@ -163,7 +182,8 @@ body {
   }
 
   .chat-history {
-    flex: 1; /* chiếm toàn bộ khoảng trống còn lại */
+    flex: 1;
+    /* chiếm toàn bộ khoảng trống còn lại */
     padding: 12px;
     margin: 0;
     overflow-y: auto;
