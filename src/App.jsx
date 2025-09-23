@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import ReactMarkdown from "react-markdown";
-import "github-markdown-css/github-markdown.css";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -125,26 +124,13 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         {chats.map((chat, index) => (
           <div
             key={index}
-            className={`chat-bubble ${
-              chat.role === "user" ? "user" : "assistant"
-            }`}
+            className={`chat-bubble ${chat.role === "user" ? "user" : "assistant"
+              }`}
           >
             <span className="chat-role">
               {chat.role === "user" ? "Bạn" : "P.KHTH"}:
             </span>
-            <ReactMarkdown
-              className="markdown-body chat-content"
-              components={{
-                a: ({ node, ...props }) => (
-                  <a
-                    {...props}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: "#2563eb", textDecoration: "underline" }}
-                  />
-                ),
-              }}
-            >
+            <ReactMarkdown className="chat-content">
               {chat.content}
             </ReactMarkdown>
           </div>

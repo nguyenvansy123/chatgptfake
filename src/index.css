@@ -5,6 +5,17 @@ body {
   padding: 0;
 }
 
+/* Global fixes to prevent 10px right shift on iPhone */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; /* prevent horizontal scroll / right shift on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .chat-container {
   margin: 0 auto;
   max-width: 1000px;
