@@ -14,6 +14,8 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
 **Một số gợi ý để bắt đầu:**
 - "Quy trình nộp đề tài nghiên cứu như thế nào?"
 - "Cần biểu mẫu gì khi đăng ký sáng kiến?"
+
+*Lưu ý: Câu trả lời có thể mất từ 1 đến 2 phút để hiển thị đầy đủ.*
 `,
     },
   ]);
