@@ -23,11 +23,11 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
 
   const chatHistoryRef = useRef(null);
 
-  useEffect(() => {
-    if (chatHistoryRef.current) {
-      chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
-    }
-  }, [chats, isTyping]);
+  // useEffect(() => {
+  //   if (chatHistoryRef.current) {
+  //     chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
+  //   }
+  // }, [chats, isTyping]);
 
   // typing effect
   const typeReply = (text, msgs) => {
