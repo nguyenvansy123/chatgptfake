@@ -62,23 +62,19 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "gpt-5",
-          input: [
-            {
-              role: "system",
-              content:
-                "Bạn là chuyên viên quản lý nghiên cứu khoa học BV Răng Hàm Mặt TPHCM. Trả lời bằng tiếng Việt.",
-            },
-            {
-              role: "system",
-              content:
-                "Nếu người dùng hỏi câu không liên quan thì trả lời: Bạn có câu hỏi gì về quy trình nghiên cứu khoa học, sáng kiến cải tiến và xét duyệt y đức của BV Răng Hàm Mặt TPHCM?",
-            },
-            {
-              role: "system",
-              content:
-                "Chỉ trả lời dựa trên tài liệu nội bộ của BV Răng Hàm Mặt TPHCM. Nếu không có trong tài liệu thì trả lời rằng tôi không thể trả lời câu hỏi này.",
-            },
-            { role: "user", content: message },
+          input: [{
+            role: "system",
+            content: "Bạn là chuyên viên quản lý nghiên cứu khoa học BV Răng Hàm Mặt TPHCM. Trả lời bằng tiếng Việt.",
+          },
+          {
+            role: "system",
+            content: "Nếu người dùng hỏi câu không liên quan thì trả lời: Bạn có câu hỏi gì về quy trình nghiên cứu khoa học, sáng kiến cải tiến và xét duyệt y đức của BV Răng Hàm Mặt TPHCM?",
+          },
+          {
+            role: "system",
+            content: "Chỉ trả lời dựa trên tài liệu nội bộ của BV Răng Hàm Mặt TPHCM. Nếu không có trong tài liệu thì trả lời rằng tôi không thể trả lời câu hỏi này.",
+          },
+          { role: "user", content: message },
           ],
           tools: [
             {
@@ -120,9 +116,8 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         {chats.map((chat, index) => (
           <div
             key={index}
-            className={`chat-bubble ${
-              chat.role === "user" ? "user" : "assistant"
-            }`}
+            className={`chat-bubble ${chat.role === "user" ? "user" : "assistant"
+              }`}
           >
             <span className="chat-role">
               {chat.role === "user" ? "Bạn" : "P.KHTH"}:
