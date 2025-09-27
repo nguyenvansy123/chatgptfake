@@ -61,7 +61,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "gpt-4.1-mini",
+          model: "gpt-5",
           input: [
             {
               role: "system",
