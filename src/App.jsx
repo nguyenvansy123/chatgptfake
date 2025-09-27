@@ -86,7 +86,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
       });
 
       const data = await res.json();
-      console.log("API response:", data);
+  
 
       const assistantMessage = data.output?.find(
         (item) => item.type === "message" && item.role === "assistant"
