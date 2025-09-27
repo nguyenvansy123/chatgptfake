@@ -27,7 +27,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
     }
   }, [chats, isTyping]);
 
-  // Hàm typing từng ký tự
+  // typing effect
   const typeReply = (text, msgs) => {
     let index = 0;
     const newMsg = { role: "assistant", content: "" };
@@ -43,7 +43,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         clearInterval(interval);
         setIsTyping(false);
       }
-    }, 30); // tốc độ hiển thị (ms/char)
+    }, 30);
   };
 
   const chat = async (e, message) => {
@@ -61,7 +61,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "gpt-5",   // đổi sang model phù hợp
+          model: "gpt-4.1-mini",
           input: [
             {
               role: "system",
@@ -100,6 +100,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
       if (assistantMessage?.content?.[0]?.text) {
         reply = assistantMessage.content[0].text;
       }
+
       typeReply(reply, msgs);
     } catch (err) {
       console.error(err);
@@ -119,8 +120,9 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         {chats.map((chat, index) => (
           <div
             key={index}
-            className={`chat-bubble ${chat.role === "user" ? "user" : "assistant"
-              }`}
+            className={`chat-bubble ${
+              chat.role === "user" ? "user" : "assistant"
+            }`}
           >
             <span className="chat-role">
               {chat.role === "user" ? "Bạn" : "P.KHTH"}:
