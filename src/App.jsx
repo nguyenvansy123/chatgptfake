@@ -60,7 +60,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: {
+        body: JSON.stringify({
           model: "gpt-5",
           input: [{
             role: "system",
@@ -82,7 +82,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
               vector_store_ids: ["vs_68c2368283788191b4eeabe7c26b40d3"],
             },
           ],
-        },
+        }),
       });
 
       const data = await res.json();
