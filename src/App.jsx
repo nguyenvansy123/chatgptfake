@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import ReactMarkdown from "react-markdown";
+import bots from "./bots.json";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -20,6 +21,10 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  // load chatbot list from JSON
+  const otherBots = bots ?? [];
 
   const chatHistoryRef = useRef(null);
 
@@ -107,7 +112,47 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
   };
 
   return (
-    <main className="chat-container">
+    <div className="app-layout">
+      <aside className={`sidebar ${!sidebarOpen ? "collapsed" : ""}`}>
+        <div className="sidebar-inner">
+          <div className="sidebar-header">
+            <h3 className="sidebar-title">Các chatbot khác mà bạn có thể quan tâm</h3>
+            <button
+              className="sidebar-hide-btn"
+              aria-label="Ẩn sidebar"
+              onClick={() => setSidebarOpen(false)}
+            >
+              ✕
+            </button>
+          </div>
+          <ul className="bot-list">
+            {otherBots.map((bot) => (
+              <li key={bot.id} className="bot-item">
+                <a href={bot.url} target="_blank" rel="noopener noreferrer" className="bot-link">
+                  {bot.icon ? (
+                    <img src={bot.icon} alt="bot" className="bot-icon-img" />
+                  ) : (
+                    <span className="bot-icon">🤖</span>
+                  )}
+                  <span className="bot-title">{bot.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+
+      {!sidebarOpen && (
+        <button
+          className="show-sidebar-btn"
+          aria-label="Hiện sidebar"
+          onClick={() => setSidebarOpen(true)}
+        >
+          ☰
+        </button>
+      )}
+
+      <main className="chat-container">
       <h1 className="chat-title">
         QUY TRÌNH NGHIÊN CỨU KHOA HỌC VÀ SÁNG KIẾN CẢI TIẾN
         <br />
@@ -153,7 +198,8 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
           Gửi
         </button>
       </form>
-    </main>
+      </main>
+    </div>
   );
 }
 
