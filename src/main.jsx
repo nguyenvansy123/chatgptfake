@@ -19,6 +19,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           element={<Redirect to="https://script.google.com/macros/s/AKfycbyc13h7JoXR5TaRihX7WCHDY7a6MiPN73r0ZXzMAhZpZ8LkYUn7W70mzm_42lyGcwUU4Q/exec" />} 
         />
       </Routes>
+      <Route 
+          path="/quy-trinh-tinh-tuoi-rang" 
+          element={<Redirect to="https://script.google.com/macros/s/AKfycbyRULgKWbLRkk89i0UI1VMWxa0itYN82_8VGqF7-KoX9qN6gAbyNzxuNo4kCV9nRH5F/exec" />} 
+        />
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>,
 )
