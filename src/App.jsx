@@ -68,7 +68,7 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "gpt-5",
+          model: "gpt-5.4",
           input: [{
             role: "system",
             content: "Bạn là chuyên viên quản lý nghiên cứu khoa học BV Răng Hàm Mặt TPHCM. Trả lời bằng tiếng Việt.",
