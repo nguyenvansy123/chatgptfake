@@ -113,6 +113,15 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
 
   return (
     <div className="app-layout">
+      {/* Backdrop để đóng sidebar khi click bên ngoài trên mobile */}
+      {sidebarOpen && (
+        <div 
+          className="sidebar-backdrop" 
+          onClick={() => setSidebarOpen(false)}
+          aria-label="Đóng sidebar"
+        />
+      )}
+
       <aside className={`sidebar ${!sidebarOpen ? "collapsed" : ""}`}>
         <div className="sidebar-inner">
           <div className="sidebar-header">
@@ -126,15 +135,18 @@ Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiế
             </button>
           </div>
           <ul className="bot-list">
-            {otherBots.map((bot) => (
+              {otherBots.map((bot, index) => (
               <li key={bot.id} className="bot-item">
                 <a href={bot.url} target="_blank" rel="noopener noreferrer" className="bot-link">
-                  {bot.icon ? (
-                    <img src={bot.icon} alt="bot" className="bot-icon-img" />
-                  ) : (
-                    <span className="bot-icon">🤖</span>
-                  )}
-                  <span className="bot-title">{bot.title}</span>
+                    <span className="bot-order">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="bot-content-wrap">
+                    {bot.icon ? (
+                      <img src={bot.icon} alt="bot" className="bot-icon-img" />
+                    ) : (
+                      <span className="bot-icon">🤖</span>
+                    )}
+                    <span className="bot-title">{bot.title}</span>
+                  </span>
                 </a>
               </li>
             ))}
