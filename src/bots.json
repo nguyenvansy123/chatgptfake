@@ -10,5 +10,11 @@
         "title": "Đánh giá Chất Lượng Phòng Khám Chuyên Khoa Răng Hàm Mặt",
         "url": "https://notebooklm.google.com/notebook/60e328ea-2b4d-48df-be95-1a58c5430d8e?addSource=true",
         "icon": "/images/nursing.svg"
+    },
+    {
+        "id": 3,
+        "title": "Giám định tuổi răng",
+        "url": "https://script.google.com/macros/s/AKfycbywwAOV_1odgxhP-5dDJAjlaOH2pGocSyCxxV2WCQMBBKb8WGQhDW7SgsTaJCIdK9X_/exec",
+        "icon": "/images/tooth-solid.png"
     }
 ]
