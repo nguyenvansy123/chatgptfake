@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         />
         <Route 
           path="/khth-dmkt-nvyt" 
-          element={<Redirect to="https://script.google.com/macros/s/AKfycbyc13h7JoXR5TaRihX7WCHDY7a6MiPN73r0ZXzMAhZpZ8LkYUn7W70mzm_42lyGcwUU4Q/exec" />} 
+          element={<Redirect to="https://script.google.com/macros/s/AKfycbzRFn6yWQelOE7KeRCPKoJwcfSmic_3eSaZ2_QfwHoBbZOhte6AgkqEM4yvTdwybiMV5Q/exec" />} 
         />
         <Route
           path="/quy-trinh-tinh-tuoi-rang" 
