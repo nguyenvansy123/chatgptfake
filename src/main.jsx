@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         />
         <Route
           path="/quy-trinh-tinh-tuoi-rang" 
-          element={<Redirect to="https://script.google.com/macros/s/AKfycbyWB21GSffPWnI_IPHSbwPUiMzfc_PLlgA8_H4CIXo-_m70oo1J6BBKaivx7FR7OjsZ/exec" />} 
+          element={<Redirect to="https://script.google.com/macros/s/AKfycbzd8jBl8l46AaI_rNfm3fMGLt_tVoZmNFjpZ9R44dRJszitjrArp5jApyoe7dZlUhdE/exec" />} 
         />
       </Routes>
     </BrowserRouter>
