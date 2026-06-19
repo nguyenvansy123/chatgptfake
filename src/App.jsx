@@ -13,6 +13,7 @@ Xin chào 👋, tôi là **trợ lý phát triển khoa học và đổi mới s
 Bạn có thể hỏi tôi về quy trình nghiên cứu khoa học, sáng kiến cải tiến và xét duyệt y đức.
 
 **Một số gợi ý để bắt đầu:**
+- "Quy trình và biểu mẫu xét duyệt y đức như thế nào?"
 - "Quy trình nộp đề tài nghiên cứu như thế nào?"
 - "Cần biểu mẫu gì khi đăng ký sáng kiến?"
 
